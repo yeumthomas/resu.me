@@ -1,7 +1,7 @@
 <template>
 	<div id=Skills>
 	<Navbar />
-	Skills
+	<h1 class=Title>Skills</h1>
 	</div>
 </template>
 
@@ -13,5 +13,7 @@ export default {
 </script>
 
 <style scoped>
-
+Title{
+	font-size: 60px;
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Hello, Wanderer!</h1>
-    <p>Enter your personal details and start journey with us</p>
-    <button id="su" v-on:click="emitClick">Sign Up</button>
+    <h1>Been Here Before?</h1>
+    <p>Enter your login information</p>
+    <button id="su" v-on:click="emitClick">Sign In</button>
   </div>
 </template>
 
@@ -17,10 +17,15 @@ export default {
 </script>
 
 <style scoped>
+h1,p{
+  color: #2a2a2a;
+}
+h1 {
+  font-weight: bold;
+}
 button{
     border-radius: 20px;
-    border: 1px solid #f3f3f3;
-    background: #23bebe;
+    border: 1px solid #ffb101;
     color: #fff;
     font-size: 12px;
     font-weight: bold;
@@ -31,6 +36,7 @@ button{
 }
 
 #su{
-  background-color: rgb(235, 201, 13);
+  background-color: white;
+  color: #2a2a2a;
 }
 </style>
