@@ -1,2 +1,2 @@
 # hackricex
-HackRice X Submission for Finance track + Bill.com challenge
+HackRice X Submission for Finance track
