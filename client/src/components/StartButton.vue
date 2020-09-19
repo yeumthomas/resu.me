@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-on:click="toSignup">Begin</button>
+    <button v-on:click="toSignupLogin">Begin</button>
   </div>
 </template>
 
@@ -8,8 +8,8 @@
 export default {
   name: 'StartButton',
   methods: {
-    toSignup() {
-      this.$router.navigate('signup')
+    toSignupLogin() {
+      this.$router.push('signuplogin')
     }
   }
 }
