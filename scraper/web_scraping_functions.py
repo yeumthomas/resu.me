@@ -34,6 +34,10 @@ def scrape_coursera(keyword):
         courseInfo = {'name': name.text}
         courses.append(courseInfo)
 
+        # Course image
+        img = li.find('img')
+        courseInfo['img'] = img['src']
+        
         # Course link
         tag = li.find('a', attrs = {'data-click-key':'search.search.click.search_card'})
         link = "https://www.coursera.org" + tag['href']
@@ -58,21 +62,27 @@ def scrape_coursera(keyword):
 
         # Course fields
         allFields = []
-        fields = courseSoup.findAll('div', attrs = {'class': '_16ni8zai m-b-0'})
+        fields = courseSoup.findAll('div', attrs = {'class': lambda x: x and x.startswith('_16ni8zai m-b-0')})
         for field in fields:
             if field != None:
                 allFields.append(field.text)
             else:
                 allFields.append(" ")
 
-        # Course level
-        # for field in allFields:
-            
-
+        for field in allFields:
+            if field != 0:
+                if 'Level' in field:
+                    courseInfo['level'] = field
+                elif '%' in field:
+                    courseInfo['onlinePercentage'] = field
         
+        # Course primary language
+        courseInfo['lang'] = allFields[len(allFields) - 1]
+
         # Course skills
         skills = []
         for skill in courseSoup.findAll('span', attrs = {'class': '_1q9sh65'}):
             skills.append(skill.text)
         courseInfo['skills'] = skills
+
     return courses
