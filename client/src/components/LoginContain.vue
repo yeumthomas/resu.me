@@ -1,62 +1,36 @@
 <template>
-    <div class="overlay-panel overlay-right">
-        <h1>Hello, Wanderer!</h1>
-        <p>Enter your personal details and start journey with us</p>
-        <button class="ghost" id="signUp">Sign Up</button>
-    </div>
+  <div>
+    <h1>Hello, Wanderer!</h1>
+    <p>Enter your personal details and start journey with us</p>
+    <button id="su" v-on:click="emitClick">Sign Up</button>
+  </div>
 </template>
 
+<script>
+export default {
+  methods: {
+    emitClick() {
+      this.$emit('shifted')
+    }
+  }
+}
+</script>
+
 <style scoped>
-.si{
-    background-color: rgb(235, 4, 216);
-}
-.su{
-    background-color: rgb(235, 201, 13);
-}
-
-
-
-.overlay-container{
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: transform 0.6s ease-in-out;
-    z-index: 100;
-}
-.overlay{
-    background: #fff241;
-    background: linear-gradient(to right, #ebd511, #d20afa) no-repeat 0 0 / cover;
+button{
+    border-radius: 20px;
+    border: 1px solid #f3f3f3;
+    background: #23bebe;
     color: #fff;
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0) ;
-    transition: transform 0.6s ease-in-out;
-}
-.overlay-panel{
-    position: absolute;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-     align-items: center; 
-    padding: 0 40px;
-    height: 100%;
-    width: 50%;
-    text-align: center;
-    transform: translateX(0);
-    transition: transform 0.6s ease-in-out;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
 }
 
-.overlay-right{
-    right: 0;
-    transform: translateX(0);
-}
- .overlay-left{ 
-    transform: translateX(-20%);
+#su{
+  background-color: rgb(235, 201, 13);
 }
 </style>

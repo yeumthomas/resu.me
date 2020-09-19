@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="justify-content-center">
     <h1>resu.me</h1>
-    <img src="../assets/logo.png" width="500px" length = "500px" class="imgstyle" alt="image">
+    <img src="../assets/logo.png" width="500px" length = "500px" class="img-fluid my-1" alt="image">
     <StartButton />
   </div>
 </template>
@@ -23,8 +23,4 @@ h1 {
   color: #2a2a2a;
 }
 
-.imgstyle {
-  position: relative;
-  top: -30px;
-}
 </style>

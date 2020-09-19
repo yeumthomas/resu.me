@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-4">
     <button v-on:click="toSignupLogin">Begin</button>
   </div>
 </template>
@@ -16,27 +16,16 @@ export default {
 </script>
 
 <style scoped>
-html {
-  --BTNcolor-default: #FF006E;
-  --BTNcolor-dark: #EE005D;
-  --BTNcolor-text: #FFFFFF;
-  --BTNradius: .5rem;
-}
-
-body {
-  perspective: 500px;
-}
-
 button {
   position: relative;
   display: inline-block;
   border: none;
   padding: 0.5rem 1.5rem;
-  border-radius: var(--BTNradius, .5rem);
+  border-radius: .5rem;
   margin: 0;
   text-decoration: none;
-  background: var(--BTNcolor-default, #ffb101);
-  color: var(--BTNcolor-text, #2a2a2a);
+  background: #ffb101;
+  color: #2a2a2a;
   font-family: Avenir;
   font-size: 20px;
   font-weight: bold;
