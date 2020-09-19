@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import Landing from '../pages/Landing.vue';
 import SignupLogin from '../pages/SignupLogin.vue';
+import Onboarding from '../pages/Onboarding.vue';
 
 Vue.use(VueRouter)
 
@@ -16,7 +17,12 @@ const routes = [
     path: '/signuplogin',
     name: 'signuplogin',
     component: SignupLogin
-	},
+  },
+  {
+    path: '/onboarding',
+    name: 'onboarding',
+    component: Onboarding
+	}
 	
 ];
 
