@@ -1,13 +1,17 @@
 <template>
-    <div>
-        <a href='/Signup.vue'><button>Begin</button></a>
-    </div>
+  <div>
+    <button v-on:click="toSignup">Begin</button>
+  </div>
 </template>
 
 <script>
-
 export default {
-  name: 'start_button'
+  name: 'StartButton',
+  methods: {
+    toSignup() {
+      this.$router.navigate('signup')
+    }
+  }
 }
 </script>
 

@@ -1,18 +1,18 @@
 <template>
-    <div>
-        <h1>resu.me</h1>
-        <img src="../assets/logo.png" width="500px" length = "500px" class="imgstyle" alt="image">
-        <start_button/>
-    </div>
+  <div>
+    <h1>resu.me</h1>
+    <img src="../assets/logo.png" width="500px" length = "500px" class="imgstyle" alt="image">
+    <StartButton />
+  </div>
 </template>
 
 <script>
 
-import start_button from "../components/start_button"
+import StartButton from "../components/StartButton"
 export default {
   name: 'landing',
   components:{
-        start_button
+    StartButton
   },
 }
 </script>
