@@ -1,14 +1,16 @@
 <template>
-	<div id=Skills>
-	<Navbar />
-	<h1 class=Title>Skills</h1>
+	<div id="skills">
+		<Navbar />
+		Skills
 	</div>
 </template>
 
 <script>
-import navbar from "../components/Navbar"
+import Navbar from "../components/Navbar"
 export default {
-  navbar
+	components: {
+		Navbar
+	}
 }
 </script>
 
