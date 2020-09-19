@@ -19,20 +19,10 @@
     
 <script>
 export default {
-    name:"navbar",
-    methods: {
-      nukeCookies() {
-        this.$cookies.remove('name')
-        this.$cookies.remove('roles')
-        this.$cookies.remove('email')
-        this.$cookies.remove('token')
-        this.$router.push({ name: 'landing' })
-      }
-    }
 }
 </script>
     
-<style scoped lang="css">
+<style scoped>
 .navbar {
   margin-top:0px;
 }
