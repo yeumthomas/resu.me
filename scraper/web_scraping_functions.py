@@ -17,9 +17,9 @@ def format_keyword(keyword):
 
 
 def scrape_coursera(keyword):
-    format_keyword(keyword)
+    updated_keyword = format_keyword(keyword)
 
-    url = "https://www.coursera.org/search?query=python&"
+    url = "https://www.coursera.org/search" + updated_keyword
 
     with urllib.request.urlopen(url) as response:
         page = response.read()
@@ -27,15 +27,19 @@ def scrape_coursera(keyword):
     courses = []
 
     soup = BeautifulSoup(page, 'html.parser')
-    for li in soup.findAll('li', attrs={'class': 'ais-InfiniteHits-item'}):
+    for li in soup.findAll('li', attrs = {'class':'ais-InfiniteHits-item'}):
 
         # Course name
-        name = li.find('h2', attrs={'class': 'color-primary-text card-title headline-1-text'})
+        name = li.find('h2', attrs = {'class':'color-primary-text card-title headline-1-text'})
         courseInfo = {'name': name.text}
         courses.append(courseInfo)
 
+        # Course image
+        img = li.find('img')
+        courseInfo['img'] = img['src']
+        
         # Course link
-        tag = li.find('a', attrs={'data-click-key': 'search.search.click.search_card'})
+        tag = li.find('a', attrs = {'data-click-key':'search.search.click.search_card'})
         link = "https://www.coursera.org" + tag['href']
         courseInfo['link'] = link
         with urllib.request.urlopen(link) as response:
@@ -43,40 +47,42 @@ def scrape_coursera(keyword):
         courseSoup = BeautifulSoup(coursePage, 'html.parser')
 
         # Course description
-        desc = courseSoup.find('p', attrs={'class': 'max-text-width m-b-0'})
+        desc = courseSoup.find('p', attrs = {'class': 'max-text-width m-b-0'})
         if desc != None:
             courseInfo['desc'] = desc.text
         else:
             courseInfo['desc'] = desc
 
-        # Course rating
-        rating = courseSoup.find('span',
-                                 attrs={'class': '_16ni8zai m-b-0 rating-text number-rating number-rating-expertise'})
+        # Course rating 
+        rating = courseSoup.find('span', attrs = {'class': '_16ni8zai m-b-0 rating-text number-rating number-rating-expertise'})
         if rating != None:
-            courseInfo['rating'] = rating.text
+            courseInfo['rating'] = rating.text 
         else:
             courseInfo['rating'] = rating
 
-        # Course level
-        level = courseSoup.find('div', attrs={'class': '_16ni8zai m-b-0'})
-        if level != None:
-            courseInfo['level'] = level.text
-        else:
-            courseInfo['level'] = level
+        # Course fields
+        allFields = []
+        fields = courseSoup.findAll('div', attrs = {'class': lambda x: x and x.startswith('_16ni8zai m-b-0')})
+        for field in fields:
+            if field != None:
+                allFields.append(field.text)
+            else:
+                allFields.append(" ")
+
+        for field in allFields:
+            if field != 0:
+                if 'Level' in field:
+                    courseInfo['level'] = field
+                elif '%' in field:
+                    courseInfo['onlinePercentage'] = field
+        
+        # Course primary language
+        courseInfo['lang'] = allFields[len(allFields) - 1]
 
         # Course skills
         skills = []
-        for skill in courseSoup.findAll('span', attrs={'class': '_1q9sh65'}):
+        for skill in courseSoup.findAll('span', attrs = {'class': '_1q9sh65'}):
             skills.append(skill.text)
         courseInfo['skills'] = skills
 
-        # Course primary language
-        # lang = courseSoup.find('div', attrs = {'class': '_16ni8zai m-b-0'})
-        # if lang != None:
-        #     courseInfo[lang] = lang.text
-        # else:
-        #     courseInfo[lang] = lang
-
-        # # Course subtitle languages
-        # subs = courseSoup.find
     return courses
