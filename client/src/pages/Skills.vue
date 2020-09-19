@@ -1,7 +1,7 @@
 <template>
 	<div id="skills">
 		<Navbar />
-		Skills
+		<h1 class = Title>Skills</h1>
 	</div>
 </template>
 

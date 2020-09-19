@@ -5,12 +5,18 @@
     <input type="email" placeholder="Email"/>
     <input type="password" placeholder="Password"/>
     <a href="" class="my-2 text-muted">Forgot Password</a>
-    <button class="btn btn-outline-primary">SIGN IN</button>
+    <button class="btn btn-outline-primary" v-on:click="toSkills">SIGN IN</button>
   </form>
 </template>
 
 <script>
 export default {
+  name: 'Login',
+  methods: {
+    toSkills() {
+      this.$router.push('skills')
+    }
+  }
 }
 </script>
 
