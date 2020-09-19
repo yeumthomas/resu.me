@@ -1,28 +1,23 @@
 <template>
 	<form>
-		<input id="input-1" type="text" placeholder="Name" required autofocus />
+		<input id="input-1" type="text" placeholder="Cooking, Negotiation, Woodwork" required autofocus />
 		<label for="input-1">
-			<span class="label-text">Full Name</span>
+			<span class="label-text">Current Skills (Separate with commas)</span>
 			<span class="nav-dot"></span>
 		</label>
-		<input id="input-2" type="text" placeholder="Cooking, Negotiation" required />
+		<input id="input-2" type="text" placeholder="Programming, Investing, Photographer" required />
 		<label for="input-2">
-			<span class="label-text">Skills</span>
+			<span class="label-text">Interests and Aspirations (Separate with commas)</span>
 			<span class="nav-dot"></span>
 		</label>
-		<input id="input-3" type="text" placeholder="Programming, Guitar" required />
+		<input id="input-3" type="text" placeholder="Houston" required />
 		<label for="input-3">
-			<span class="label-text">Interests and Aspirations</span>
+			<span class="label-text">City</span>
 			<span class="nav-dot"></span>
 		</label>
-		<input id="input-4" type="text" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required />
+		<input id="input-4" type="text" placeholder="Texas" required />
 		<label for="input-4">
-			<span class="label-text">Other</span>
-			<span class="nav-dot"></span>
-		</label>
-		<input id="input-5" type="text" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" required />
-		<label for="input-5">
-			<span class="label-text">Other2</span>
+			<span class="label-text">State</span>
 			<span class="nav-dot"></span>
 		</label>
 		<p class="tip">Press Tab</p>
@@ -167,9 +162,7 @@ label[for="input-3"] .nav-dot {
 label[for="input-4"] .nav-dot {
 	margin-top: -50px;
 }
-label[for="input-5"] .nav-dot {
-	margin-top: -25px;
-}
+
 * {
 	margin: 0;
 	padding: 0;

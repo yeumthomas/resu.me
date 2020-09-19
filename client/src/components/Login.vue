@@ -1,124 +1,87 @@
 <template>
-     <div class="form-container sign-in-container">
-            <form action="#">
-                <h1>Sign In</h1>
-                <span>or use your account</span>
-                <input type="email" placeholder="Email"/>
-                <input type="password" placeholder="Password"/>
-                <a href="http://Youtube.com/c/ZaidIrfanKhan" target="_blank">I Forgot my Password</a>
-                <button class="si">Sign In</button>
-            </form>
-        </div>
+  <form>
+    <h1 class="font-weight-bold">Sign In</h1>
+    <span>Log in with your email</span>
+    <input type="email" placeholder="Email" v-model="email" />
+    <input type="password" placeholder="Password" v-model="password" />
+    <a href="" class="my-2 text-muted">Forgot Password</a>
+    <button type="button" class="btn" v-on:click="sendLoginRequest">Sign In</button>
+  </form>
 </template>
 
 <script>
-
+import axios from 'axios';
 
 export default {
-  name: 'login',
-  components:{
-        
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
   },
+  methods: {
+    sendLoginRequest() {
+      console.log('asdf')
+      if(this.email.length > 0 && this.password.length > 0) {
+        axios({
+          method: 'post',
+          url: 'http://localhost:3000/api/v1/auth/login',
+          data: {
+            email: this.email,
+            password: this.password
+          }
+        }).then( (response) => {
+          this.$cookies.set('token', response.data.token)
+          this.$router.push({ name: 'skills'})
+        })
+      }
+    }
+  }
 }
 </script>
 
 <style scoped>
-
-h1{
-    font-weight: bold;
-    letter-spacing: 0.8px;
-    margin: 0;
-}
-p{
-    font-size: 18px;
-    font-weight: 100;
-    line-height: 20px;
-    letter-spacing: 0.5px;
-    margin: 20px 0 30px;
-}
-span{
-    font-size: 16px;
-    letter-spacing: 0.8px;
-}
-a{
-    color: #333;
-    font-size: 16px;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    margin: 15px 0;
-}
-.container{
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    position: relative;
-    overflow: hidden;
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
-}
-.form-container form{
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 0 50px;
-    height: 100%;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-}
-.social-container{
-    margin: 20px 0;
-}
-.social-container a{
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 5px;
-    height: 40px;
-    width: 40px;
-}
-.form-container input{
-    background: #eee;
-    border: none;
-    padding: 12px 15px;
-    margin: 8px 0;
-    width: 100%;
-}
-button{
-    border-radius: 20px;
-    border: 1px solid #f3f3f3;
-    background: #23bebe;
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
-}
-button:active{
-    transform: scale(0.95);
-}
-button:focus{
-    outline: none;
-}
-button.ghost{
-    background: transparent;
-    border-color: #fff;
-}
-.sign-in-container{
-    left: 0;
-    width: 50%;
-    z-index: 2;
-}
-.form-container{
-    position: absolute;
-    top: 0;
-    height: 100%;
-    transition: all 0.6s ease-in-out;
+form {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
 
+input {
+  background: #eee;
+  border: none;
+  padding: .5rem;
+  margin: .5rem;
+  width: 75%;
+  border-radius: 12px;
+}
+
+h1, span, a {
+  letter-spacing: .1rem;
+  margin: 0;
+  color: #2a2a2a;
+  text-decoration: none;
+}
+
+.btn {
+  color: #2a2a2a;
+  background: #fff241;
+  border: 1px solid #f3f3f3;
+  border-radius: 20px;
+  padding: .75rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  font-size: .8rem;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #2a2a2a;
+  color: #ffb101;
+}
 </style>
