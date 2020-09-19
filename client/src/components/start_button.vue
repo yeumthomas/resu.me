@@ -34,7 +34,8 @@ button {
   background: var(--BTNcolor-default, #ffb101);
   color: var(--BTNcolor-text, #2a2a2a);
   font-family: Avenir;
-  font-size: 20px;
+  font-size: 30px;
+  font-weight: bold;
   cursor: pointer;
   text-align: center;
   transition: transform .15s ease;
