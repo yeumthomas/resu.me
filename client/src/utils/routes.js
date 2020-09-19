@@ -29,7 +29,6 @@ const routes = [
     name: 'skills',
     component: Skills
   }
-	
 ];
 
 const router = new VueRouter({

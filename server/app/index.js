@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const moment = require('moment')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const routes = require('../src/controllers')
 
@@ -15,6 +16,7 @@ const run = (port, dbUri) => {
 
   // Setup request handling
   app.use(bodyParser.json())
+  app.use(cors())
   app.use('/api/v1', routes)
 
   // Listen to DB and HTTP

@@ -2,15 +2,41 @@
   <form>
     <h1 class="font-weight-bold">Sign In</h1>
     <span>Log in with your email</span>
-    <input type="email" placeholder="Email"/>
-    <input type="password" placeholder="Password"/>
+    <input type="email" placeholder="Email" v-model="email" />
+    <input type="password" placeholder="Password" v-model="password" />
     <a href="" class="my-2 text-muted">Forgot Password</a>
-    <button class="btn btn-outline-primary">SIGN IN</button>
+    <button type="button" class="btn" v-on:click="sendLoginRequest">Sign In</button>
   </form>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    sendLoginRequest() {
+      console.log('asdf')
+      if(this.email.length > 0 && this.password.length > 0) {
+        axios({
+          method: 'post',
+          url: 'http://localhost:3000/api/v1/auth/login',
+          data: {
+            email: this.email,
+            password: this.password
+          }
+        }).then( (response) => {
+          this.$cookies.set('token', response.data.token)
+          this.$router.push({ name: 'skills'})
+        })
+      }
+    }
+  }
 }
 </script>
 

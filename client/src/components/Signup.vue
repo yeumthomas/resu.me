@@ -2,15 +2,43 @@
   <form>
     <h1 class="font-weight-bold">Create Account</h1>
     <span>Use your email for registration</span>
-    <input type="text" placeholder="Name"/>
-    <input type="email" placeholder="Email"/>
-    <input type="password" placeholder="Password"/>
-    <button class="btn">Sign Up</button>
+    <input type="text" placeholder="Name" v-model="name" />
+    <input type="email" placeholder="Email" v-model="email" />
+    <input type="password" placeholder="Password" v-model="password" />
+    <button type="button" class="btn" v-on:click="sendSignupRequest">Sign Up</button>
   </form>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+  data() {
+    return {
+      name: '',
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    sendSignupRequest() {
+      if(this.name.length > 0 && this.email.length > 0 && this.password.length > 0) {
+        axios({
+          method: 'post',
+          url: 'http://localhost:3000/api/v1/auth/signup',
+          data: {
+            email: this.email,
+            password: this.password,
+            name: this.name,
+            classes: []
+          }
+        }).then( (response) => {
+          this.$cookies.set('token', response.data.token)
+          this.$router.push('onboarding')
+        })
+      }
+    }
+  }
 }
 </script>
 
