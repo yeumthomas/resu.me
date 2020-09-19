@@ -17,9 +17,9 @@ def format_keyword(keyword):
 
 
 def scrape_coursera(keyword):
-    format_keyword(keyword)
+    updated_keyword = format_keyword(keyword)
 
-    url = "https://www.coursera.org/search?query=python&"
+    url = "https://www.coursera.org/search?query=" + updated_keyword
 
     with urllib.request.urlopen(url) as response:
         page = response.read()
