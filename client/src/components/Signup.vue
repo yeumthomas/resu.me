@@ -71,8 +71,8 @@ h1, span, a {
 }
 
 .btn {
-  color: white;
-  background: #23bebe;
+  color: #2a2a2a;
+  background: #ffb101;
   border: 1px solid #f3f3f3;
   border-radius: 20px;
   padding: .75rem 2rem;
@@ -83,6 +83,7 @@ h1, span, a {
 }
 
 .btn:hover {
-  background: #16a9a9;
+  background: #2a2a2a;
+  color: #ffb101;
 }
 </style>

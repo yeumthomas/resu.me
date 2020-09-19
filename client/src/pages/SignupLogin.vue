@@ -95,7 +95,7 @@ export default {
 
 .overlay {
   background: #fff241;
-  background: linear-gradient(to right, #ebd511, #d20afa) no-repeat 0 0 / cover;
+  background: #ffb101;
   color: #fff;
   position: relative;
   left: -100%;

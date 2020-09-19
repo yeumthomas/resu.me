@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Welcome Back!</h1>
-    <p>To Keep connected with us please login with your personal info</p>
-    <button id="si" v-on:click="emitClick">Sign In</button>
+    <h1>New Here?</h1>
+    <p>Create an account</p>
+    <button id="si" v-on:click="emitClick">Sign Up</button>
   </div>
 </template>
 
@@ -17,11 +17,17 @@ export default {
 </script>
 
 <style scoped>
+
+h1,p{
+  color: #2a2a2a;
+}
+h1 {
+  font-weight: bold;
+}
 button{
     border-radius: 20px;
-    border: 1px solid #f3f3f3;
-    background: #23bebe;
-    color: #fff;
+    border: 1px solid #ffb101;
+    color: #2a2a2a;
     font-size: 12px;
     font-weight: bold;
     padding: 12px 45px;
@@ -31,6 +37,7 @@ button{
 }
 
 #si{
-  background-color: rgb(235, 4, 216);
+  background-color: #ffffff;
+  color: #2a2a2a;
 }
 </style>
