@@ -70,7 +70,7 @@ h1, span, a {
 
 .btn {
   color: #2a2a2a;
-  background: #ffb101;
+  background: #fff241;
   border: 1px solid #f3f3f3;
   border-radius: 20px;
   padding: .75rem 2rem;
