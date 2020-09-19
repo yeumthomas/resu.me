@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button>Begin</button>
+        <a href='/Signup.vue'><button>Begin</button></a>
     </div>
 </template>
 
@@ -27,14 +27,14 @@ button {
   position: relative;
   display: inline-block;
   border: none;
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   border-radius: var(--BTNradius, .5rem);
   margin: 0;
   text-decoration: none;
   background: var(--BTNcolor-default, #ffb101);
   color: var(--BTNcolor-text, #2a2a2a);
   font-family: Avenir;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   text-align: center;
@@ -42,6 +42,7 @@ button {
   -webkit-appearance: none;
   -moz-appearance: none;
   z-index: 0;
+  bottom: 0.8cm;
 }
 
 button::before,
