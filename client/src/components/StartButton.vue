@@ -9,7 +9,7 @@ export default {
   name: 'StartButton',
   methods: {
     toSignupLogin() {
-      this.$router.navigate('signuplogin')
+      this.$router.push('signuplogin')
     }
   }
 }

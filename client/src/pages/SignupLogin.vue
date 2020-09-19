@@ -10,8 +10,7 @@
 export default {
   name: 'signuplogin',
   components:{
-        
-  },
+  }
 }
 </script>
 
