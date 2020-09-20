@@ -108,11 +108,11 @@ button:active {
 @keyframes pulse {
   0%{
     opacity: .3;
-    box-shadow: 0 0 0 0px var(--BTNcolor-default, #666);
+    box-shadow: 0 0 0 0px var(--BTNcolor-default, #2a2a2a);
   }
   70%, 100%{
     opacity: .0;
-    box-shadow: 0 0 0 20px var(--BTNcolor-default, #666);
+    box-shadow: 0 0 0 20px var(--BTNcolor-default, #2a2a2a);
   }
 }
 
