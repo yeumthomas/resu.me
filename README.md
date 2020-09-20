@@ -1,5 +1,7 @@
 # resu.me
 
+https://www.youtube.com/watch?v=5gesqc56Xag
+
 ## Inspiration
 The socioeconomic disparity present in the world we live in has become increasingly evident, now more than ever. Having witnessed the social effects, and more importantly, the financial setbacks of a global pandemic on both a personal and widespread scale, we were driven to build a platform that would serve those in need: resu.me.
 
