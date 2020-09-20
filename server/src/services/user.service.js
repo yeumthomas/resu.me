@@ -11,6 +11,22 @@ const addOnboardInfo = async (data) => {
   return user.save()
 }
 
+const addFavoriteCourse = async (email, course) => {
+  let user = await User.findOne({ email: email })
+  Object.keys(course).map(k => course[k] = course[k].trim())
+  user.classes.push(course)
+  return user.save()
+}
+
+const addFavoriteJob = async (email, job) => {
+  let user = await User.findOne({ email: email })
+  Object.keys(job).map(k => job[k] = job[k].trim())
+  user.jobs.push(job)
+  return user.save()
+}
+
 module.exports = {
-  addOnboardInfo: addOnboardInfo
+  addOnboardInfo: addOnboardInfo,
+  addFavoriteCourse: addFavoriteCourse,
+  addFavoriteJob: addFavoriteJob
 }

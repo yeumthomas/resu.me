@@ -10,20 +10,20 @@ const schema = new mongoose.Schema({
   interests: { type: [String] },
   skills: { type: [ String ] },
   classes: { type: [{
-    title: { type: String },
-    description: { type: String },
-    language: { type: String },
+    name: { type: String },
+    desc: { type: String },
+    lang: { type: String },
     rating: { type: String },
-    image: { type: String },
-    href: { type: String },
-    platform: { type: String }
+    img: { type: String },
+    link: { type: String },
+    platform: { type: String },
+    provider: { type: String }
   }], default: [] },
   jobs: { type: [{
-    title: { type: String },
+    name: { type: String },
     company: { type: String },
     location: { type: String },
-    datePosted: { type: Date },
-    description: { type: String }
+    link: { type: String }
   }]}
 })
 
