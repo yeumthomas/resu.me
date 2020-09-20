@@ -7,6 +7,7 @@ const schema = new mongoose.Schema({
   password: { type: String },
   email: { type: String, unique: true, lowercase: true, required: 'Email Invalid' },
   location: { type: String },
+  interests: { type: [String] },
   skills: { type: [ String ] },
   classes: { type: [{
     title: { type: String },
@@ -48,6 +49,7 @@ schema.statics.validateModel = (model) => {
     name: Joi.string().required(),
     password: Joi.string().required(),
     location: Joi.string().required(),
+    interests: Joi.array().required(),
     skills: Joi.array().required(),
     classes: Joi.array().required(),
     jobs: Joi.array().required()

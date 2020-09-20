@@ -18,6 +18,7 @@ router.post('/signup', async (req, res) => {
   try {
     let data = {
       location: '',
+      interests: [],
       classes: [],
       jobs: [],
       skills: [],
