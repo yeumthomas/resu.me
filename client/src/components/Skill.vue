@@ -1,12 +1,35 @@
 <template>
     <div class="container">
-        <h3 class="title">Text fadeIn top</h3>
-        <div class="content">
-            <div class="content-overlay"></div>
-            <img class="content-image" src="../assets/logo.png">
-            <div class="content-details fadeIn-top">
-                <h3>This is a title</h3>
-                <p>This is a short description</p>
+        <div class="row">
+            <div class="col-4">
+                <div class="ybox">
+                    Skill 1
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="bbox">
+                    Skill 2
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="ybox">
+                    Skill 3
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="bbox">
+                    Skill 4
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="ybox">
+                    Skill 5
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="bbox">
+                    Skill 6
+                </div>
             </div>
         </div>
     </div>
@@ -20,123 +43,56 @@ export default {
 </script>
 
 <style scoped>
-
-*, *:before, *:after{
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing:border-box;
-  box-sizing: border-box;
-}
-
-body{
-  background: #f9f9f9;
-  font-size: 16px;
-  font-family: 'Raleway', sans-serif;
-}
-
-.main-title{
-  color: #2d2d2d;
-  text-align: center;
-  text-transform: capitalize;
-  padding: 0.7em 0;
-}
-
 .container{
-  padding: 1em 0;
-  float: left;
-  width: 50%;
-}
-@media screen and (max-width: 640px){
-  .container{
-    display: block;
     width: 100%;
-  }
+    padding: 10px;
+    margin: auto;
+    background: #ffffff;
+    display: flex;
+    flex-direction: row;
 }
 
-@media screen and (min-width: 900px){
-  .container{
-    width: 33.33333%;
-  }
+.ybox{
+    width: 250px;
+    height: 250px;
+    margin: 40px 40px;
+    background: #ffb101;
+    transition: 1s;
+    color: #2a2a2a;
+    font-weight: bold;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.container .title{
-  color: #1a1a1a;
-  text-align: center;
-  margin-bottom: 10px;
+.bbox{
+    width: 250px;
+    height: 250px;
+    margin: 40px 40px;
+    background: #2a2a2a;
+    transition: 1s; 
+    color: #ffb101;
+    font-weight: bold;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.content {
-  position: relative;
-  width: 90%;
-  max-width: 400px;
-  margin: auto;
-  overflow: hidden;
+.ybox:hover{
+    transform: scale(1.3);
+    background: #ffb101;
+    z-index: 2;
+    box-shadow: 2px 2px 2px #2a2a2a;
 }
 
-.content .content-overlay {
-  background: rgba(0,0,0,0.7);
-  position: absolute;
-  height: 99%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  opacity: 0;
-  -webkit-transition: all 0.4s ease-in-out 0s;
-  -moz-transition: all 0.4s ease-in-out 0s;
-  transition: all 0.4s ease-in-out 0s;
+.bbox:hover{
+    transform: scale(1.3);
+    background: #2a2a2a;
+    z-index: 2;
+    box-shadow: 2px 2px 2px #ffb101;
 }
-
-.content:hover .content-overlay{
-  opacity: 1;
-}
-
-.content-image{
-  width: 100%;
-}
-
-.content-details {
-  position: absolute;
-  text-align: center;
-  padding-left: 1em;
-  padding-right: 1em;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  opacity: 0;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  -webkit-transition: all 0.3s ease-in-out 0s;
-  -moz-transition: all 0.3s ease-in-out 0s;
-  transition: all 0.3s ease-in-out 0s;
-}
-
-.content:hover .content-details{
-  top: 50%;
-  left: 50%;
-  opacity: 1;
-}
-
-.content-details h3{
-  color: #fff;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  margin-bottom: 0.5em;
-  text-transform: uppercase;
-}
-
-.content-details p{
-  color: #fff;
-  font-size: 0.8em;
-}
-
-.fadeIn-top{
-  top: 20%;
-}
-
 
 
 </style>
