@@ -1,6 +1,6 @@
 <template>
 	<div id="skills">
-		<h1 class = Title>Skills</h1>
+		<div class = Title>Learn Skills</div>
 		<Skill />
 	</div>
 </template>
@@ -17,7 +17,10 @@ export default {
 </script>
 
 <style scoped>
-Title{
-	font-size: 60px;
+.Title{
+	font-size: 50px;
+	display: flex;
+    justify-content: center;
+	font-weight: bold;
 }
 </style>
