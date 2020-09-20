@@ -111,8 +111,21 @@ def scrape_coursera(keyword):
     return courses
 
 
-def scrape_udemy(keyword):
-    def format_udemy(keyword):
+def scrape_other(keyword):
+    """
+    courses
+        - name DONE
+        - image DONE
+        - hyperlink to platform
+        - description
+        - rating <-- sorted by DONE
+        - language
+        - institution/sponsor DONE
+        - platform name
+    :param keyword:
+    :return:
+    """
+    def format_other(keyword):
         """
             assumes keyword is a string of one or more words
         """
@@ -126,95 +139,55 @@ def scrape_udemy(keyword):
             url = url[:-1]
             return url
 
-    formatted_keyword = format_udemy(keyword)
+    updated_keyword = format_other(keyword)
 
-    # example
-    # NO WORK url = "https://www.udemy.com/courses/search/?price=price-free&q=cooking&sort=relevance"
-    # NO WORK url = "https://www.codecademy.com/search?query=html"
-    # WORKS url = "https://www.classcentral.com/search?q=python"
-    # ? MAYBE url = https://www.udemy.com/courses/search/?price=price-free&q=" + formatted_keyword + "&sort=relevance"
-    # WORKS url = 'https://www.monster.com/jobs/search/?q=cook&where=Katy__2C-TX&intcid=skr_navigation_nhpso_searchMain'
-    url = 'https://www.simplyhired.com/search?q=cook&l=Houston%2C+TX&job=GVLzF1t5rkWSStUfDTAQJNP_O4M1qSA0W_NL9ZX8Z8lwhw2pg33n4w'
+    # url = "https://www.classcentral.com/search?q=" + updated_keyword
+    url = "https://www.classcentral.com/search?q=python"
+
     with urllib.request.urlopen(url) as response:
         page = response.read()
+
+    courses = []
+    count = 0
     soup = BeautifulSoup(page, 'html.parser')
+    # return str(soup.findAll('td', attrs={'class': 'width-12-16 large-up-width-8-16 xxlarge-up-width-9-16 relative'}))
+    for tr in soup.findAll('tr', attrs={'class': 'row nowrap vert-align-middle padding-vert-small border-bottom border-gray-light'}):
+        if count >= 10:
+            break
+        count += 1
+
+        course_info = {}
+
+        # get sponsor
+        sponsor = tr.a.text
+        course_info['sponsor'] = sponsor
+
+        # get name
+        name = tr.span.text
+        course_info['name'] = name
+
+        # get rating
+        rating = tr.find('td', class_='hide-on-hover fill-space relative')['data-timestamp']
+        course_info['rating'] = ("{:.1f}".format(float(rating)))
+
+        # link to platform class
+        class_link = "https://www.classcentral.com" + tr.find('a', class_='color-charcoal block line-tight course-name')['href']
+
+        with urllib.request.urlopen(class_link) as response:
+            coursePage = response.read()
+        courseSoup = BeautifulSoup(coursePage, 'html.parser')
 
 
-    return {"soup": str(soup)}
-    #
-    # for div in soup.findAll('div', attrs={'class': 'popover--popover--t3rNO popover--popover-hover--14ngr'}):
-    #
-    #     course_info = {}
-    #
-    #     # Course link
-    #     tags = div.findAll('a', attrs={'class': 'udlite-custom-focus-visible course-card-link--link--3uQEZ'})
-    #     for tag in tags:
-    #         if tag['href']:
-    #             link = "https://www.udemy.com" + tag['href']
-    #     course_info['link'] = link
-    #     print(link)
-    #     # with urllib.request.urlopen(link) as response:
-    #     #     coursePage = response.read()
-    #     # courseSoup = BeautifulSoup(coursePage, 'html.parser')
-    #
-    #
-    #
-    #     # print(course_info)
-    #     #
-    #     # # Course name
-    #     # name = div.find('h3', attrs={'class': 'name-heading'})
-    #     #
-    #     # print(name)
-    #     # course_info['name'] = name.text
-    #     #
-    #     # print(course_info)
-    #
-    #     return course_info
 
-    #     # Course link
-    #     tag = li.find('a', attrs={'data-click-key': 'search.search.click.search_card'})
-    #     link = "https://www.coursera.org" + tag['href']
-    #     courseInfo['link'] = link
-    #     with urllib.request.urlopen(link) as response:
-    #         coursePage = response.read()
-    #     courseSoup = BeautifulSoup(coursePage, 'html.parser')
-    #
-    #     # Course description
-    #     desc = courseSoup.find('p', attrs={'class': 'max-text-width m-b-0'})
-    #     if desc != None:
-    #         courseInfo['desc'] = desc.text
-    #     else:
-    #         courseInfo['desc'] = desc
-    #
-    #     # Course rating
-    #     rating = courseSoup.find('span',
-    #                              attrs={'class': '_16ni8zai m-b-0 rating-text number-rating number-rating-expertise'})
-    #     if rating != None:
-    #         courseInfo['rating'] = rating.text
-    #     else:
-    #         courseInfo['rating'] = rating
-    #
-    #     # Course level
-    #     level = courseSoup.find('div', attrs={'class': '_16ni8zai m-b-0'})
-    #     if level != None:
-    #         courseInfo['level'] = level.text
-    #     else:
-    #         courseInfo['level'] = level
-    #
-    #     # Course skills
-    #     skills = []
-    #     for skill in courseSoup.findAll('span', attrs={'class': '_1q9sh65'}):
-    #         skills.append(skill.text)
-    #     courseInfo['skills'] = skills
-    #
-    #     # Course primary language
-    #     # lang = courseSoup.find('div', attrs = {'class': '_16ni8zai m-b-0'})
-    #     # if lang != None:
-    #     #     courseInfo[lang] = lang.text
-    #     # else:
-    #     #     courseInfo[lang] = lang
-    #
-    #     # # Course subtitle languages
-    #     # subs = courseSoup.find
-    # return courses
+        # get image
+        img = courseSoup.img['src'] #find('img', class_="block absolute top left width-100 height-100")
+        course_info['img'] = img
 
+        # get course description
+
+
+
+
+
+        courses.append(course_info)
+    return courses

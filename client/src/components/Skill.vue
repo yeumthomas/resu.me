@@ -64,32 +64,34 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 1rem;
 }
 
 .bbox{
     width: 250px;
     height: 250px;
     margin: 40px 40px;
-    background: #2a2a2a;
+    background: #a2dce7;
     transition: 1s; 
-    color: #ffb101;
+    color: #2a2a2a;
     font-weight: bold;
     font-size: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 1rem;
 }
 
 .ybox:hover{
     transform: scale(1.3);
     background: #ffb101;
     z-index: 2;
-    box-shadow: 2px 2px 2px #2a2a2a;
+    box-shadow: 2px 2px 2px #a2dce7;
 }
 
 .bbox:hover{
     transform: scale(1.3);
-    background: #2a2a2a;
+    background: #a2dce7;
     z-index: 2;
     box-shadow: 2px 2px 2px #ffb101;
 }
