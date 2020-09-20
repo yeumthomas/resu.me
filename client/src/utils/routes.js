@@ -4,6 +4,8 @@ import VueRouter from 'vue-router';
 import Landing from '../pages/Landing.vue';
 import Onboarding from '../pages/Onboarding.vue';
 import Skills from '../pages/Skills.vue';
+import CoursesJobs from '../pages/CoursesJobs.vue';
+
 
 Vue.use(VueRouter)
 
@@ -22,7 +24,13 @@ const routes = [
     path: '/skills',
     name: 'skills',
     component: Skills
+  },
+  {
+    path: '/coursesjobs',
+    name: 'coursesjobs',
+    component: CoursesJobs
   }
+
 ];
 
 const router = new VueRouter({

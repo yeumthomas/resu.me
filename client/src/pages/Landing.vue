@@ -13,7 +13,7 @@
 
 <script>
 import StartButton from "../components/StartButton";
-import SignupLogin from "./SignupLogin";
+import SignupLogin from "../components/SignupLogin";
 
 export default {
   name: 'landing',
