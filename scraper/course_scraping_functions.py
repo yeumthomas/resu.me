@@ -204,7 +204,10 @@ def scrape_other(keyword, q):
 
         # get image
         img = courseSoup.find('img', attrs={'class':'block absolute top left width-100 height-100'})
-        course_info['img'] = img['src']
+        if(img == None):
+            course_info['img'] = ''
+        else:
+            course_info['img'] = img['data-src']
 
         # get course description
         desc = courseSoup.find('div', class_="wysiwyg text-1 line-wide")
