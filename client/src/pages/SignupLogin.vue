@@ -1,5 +1,6 @@
 <template>
   <div class="container" id="container">
+    <button class="btn btn-sm btn-light" v-on:click="closeOverlay">&times;</button>
     <div class="form-container sign-up-container">
       <Signup />
     </div>
@@ -34,6 +35,9 @@ export default {
     LoginContain
   },
   methods: {
+    closeOverlay() {
+      this.$emit('close')
+    },
     movePanelLeft() {
       document.getElementById('container').classList.remove('right-panel-active');
     },
@@ -46,6 +50,13 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap');
+
+.btn {
+  position: absolute;
+  top: 1;
+  right: 0;
+  z-index: 101;
+}
 
 .container {
   background: #fff;

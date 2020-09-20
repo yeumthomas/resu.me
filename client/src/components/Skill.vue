@@ -30,6 +30,13 @@
                 <div class="bbox">
                     Skill 6
                 </div>
+        <h3 class="title">Text fadeIn top</h3>
+        <div class="content">
+            <div class="content-overlay"></div>
+            <img class="content-image" src="../assets/img/logo-bee.png">
+            <div class="content-details fadeIn-top">
+                <h3>This is a title</h3>
+                <p>This is a short description</p>
             </div>
         </div>
     </div>

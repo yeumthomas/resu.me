@@ -29,5 +29,11 @@ const router = new VueRouter({
   mode: 'history',
   routes
 });
+
+router.beforeEach( (to, from, next) => {
+  if(to.name !== 'landing' && !Vue.$cookies.get('token')) next({ name: 'landing' })
+  else if(to.name === 'landing' && Vue.$cookies.get('token')) next({ name: 'skills' })
+  else next()
+})
   
 export default router;
