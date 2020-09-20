@@ -31,8 +31,7 @@ export default {
           data: {
             email: this.email,
             password: this.password,
-            name: this.name,
-            classes: []
+            name: this.name
           }
         }).then( (response) => {
           this.$cookies.set('token', response.data.token)
