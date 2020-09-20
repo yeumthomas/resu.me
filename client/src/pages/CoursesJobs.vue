@@ -66,6 +66,11 @@ export default {
 				data: formData
 			}).then( (response) => {
 				this.courses = this.mergeArrays(response.data.coursera, response.data.other)
+				this.courses.sort(function(a, b) {
+					if(a.rating == null) { return 1; }
+					if(b.rating == null) { return 0; }
+					return parseInt(a.rating.split('s')[0]) > parseInt(b.rating.split('s')[0])
+				})
 				console.log(this.courses)
 				this.coursesLoading = false
 			})
@@ -80,7 +85,8 @@ export default {
 				url: 'http://127.0.0.1:5000/api/v1/scrapeJobs',
 				data: formData
 			}).then( (response) => {
-				this.jobs = this.mergeArrays(response.data.monster, response.data.simplyhired)
+				let aggregate = this.mergeArrays(response.data.monster, response.data.simplyhired)
+				this.jobs = Array.from(new Set(aggregate.map(a => a.company.trim()))).map(company => { return aggregate.find(a => a.company === company) })
 				console.log(this.jobs)
 				this.jobsLoading = false
 			})
