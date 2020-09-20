@@ -1,17 +1,14 @@
 <template>
-    <div>
-    <b-card no-body>
-        <b-tabs card>
-        <b-tab title="Tab 1" active>
-            <b-card-text><CourseCard /></b-card-text>
-        </b-tab>
-        <b-tab title="Tab 2">
-            <b-card-text><JobCard /></b-card-text>
-        </b-tab>
-        </b-tabs>
-    </b-card>
-    </div>
-
+	<div class="container-fluid">
+		<b-tabs content-class="mt-3" align="center">
+			<b-tab title="Relevant Coursework" active>
+				<CourseCard />
+			</b-tab>
+			<b-tab title="Related Jobs">
+				<JobCard />
+			</b-tab>
+		</b-tabs>
+	</div>
 </template>
 
 <script>
