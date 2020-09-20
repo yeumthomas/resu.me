@@ -6,7 +6,7 @@
       <StartButton @clicked="displayOverlay" />
     </div>
     <div class="dark-overlay d-flex align-items-center" id="login">
-      <SignupLogin />
+      <SignupLogin @close="closeOverlay" />
     </div>
   </div>
 </template>
@@ -25,6 +25,10 @@ export default {
     displayOverlay() {
       document.getElementById('login').style.visibility = 'visible';
       document.getElementById('login').style.opacity = 1;
+    },
+    closeOverlay() {
+      document.getElementById('login').style.visibility = 'hidden';
+      document.getElementById('login').style.opacity = 0;
     }
   }
 }
@@ -49,4 +53,5 @@ h1 {
   font-family: 'Kufam', cursive;
   color: #2a2a2a;
 }
+
 </style>
