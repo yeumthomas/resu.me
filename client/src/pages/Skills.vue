@@ -15,7 +15,6 @@
 import axios from 'axios';
 
 import Skill from "../components/Skill"
-
 export default {
 	components: {
 		Skill
