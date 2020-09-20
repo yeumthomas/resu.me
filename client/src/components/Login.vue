@@ -6,6 +6,7 @@
     <input type="password" placeholder="Password" v-model="password" />
     <a href="" class="my-2 text-muted">Forgot Password</a>
     <button type="button" class="btn" v-on:click="sendLoginRequest">Sign In</button>
+    <b-alert show variant="danger" class="mt-2" v-if="error">{{ error }}</b-alert>
   </form>
 </template>
 
@@ -16,7 +17,8 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   },
   methods: {
@@ -33,7 +35,11 @@ export default {
         }).then( (response) => {
           this.$cookies.set('token', response.data.token)
           this.$router.push({ name: 'skills'})
+        }).catch( () => {
+          this.error = 'Incorrect email or password'
         })
+      } else {
+        this.error = 'Email or password field empty'
       }
     }
   }
