@@ -12,16 +12,17 @@ def scrape():
 
     keyword = flask.request.form['keyword']
 
-    # scrape coursera (returns as list of dicts)
-    coursera = scraping_func.scrape_coursera(keyword)
+    return json.dumps({'other': scraping_func.scrape_udemy(keyword)})
 
 
-    print(coursera)
-    response = {}
-
-    # results are in json format
-    #return flask.jsonify.results
-    return json.dumps({'coursera': coursera})
+    # # scrape coursera (returns as list of dicts)
+    # coursera = scraping_func.scrape_coursera(keyword)
+    #
+    # response = {}
+    #
+    # # results are in json format
+    # #return flask.jsonify.results
+    # return json.dumps({'coursera': coursera})
 
 
 app.run(host='0.0.0.0', port=3000, debug=True)
