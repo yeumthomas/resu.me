@@ -2,7 +2,8 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 
-def scrape_monster(skill, location):
+def scrape_monster(skill, location, q):
+    print('monster started')
     def format_skill(keyword):
         """
         assumes keyword is a string of one or more words
@@ -64,10 +65,13 @@ def scrape_monster(skill, location):
 
                 jobs.append(jobInfo)
 
+    q.put(jobs)
+    print('monster done')
     return jobs
 
 
-def scrape_simplyhired(skill, location):
+def scrape_simplyhired(skill, location, q):
+    print('simplyhired started')
     def format_skill(keyword):
         """
         assumes keyword is a string of one or more words
@@ -123,6 +127,8 @@ def scrape_simplyhired(skill, location):
 
             jobs.append(jobInfo)
 
+    q.put(jobs)
+    print('simplyhired done')
     return jobs
 
    

@@ -2,7 +2,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 
-def scrape_coursera(keyword):
+def scrape_coursera(keyword, q):
     """
     returns a list of objects where each is a course with the following keys:
         - name
@@ -14,6 +14,9 @@ def scrape_coursera(keyword):
         - provider
         - platform
     """
+
+    print('started coursera')
+
     def format_coursera(keyword):
         """
         assumes keyword is a string of one or more words
@@ -116,10 +119,12 @@ def scrape_coursera(keyword):
         # Course platform (Coursera)
         courseInfo['platform'] = 'Coursera'
 
+    print('finish coursera')
+    q.put(courses)
     return courses
 
 
-def scrape_other(keyword):
+def scrape_other(keyword, q):
     """
     returns a list of objects where each is a course with the following keys:
         - name
@@ -131,6 +136,8 @@ def scrape_other(keyword):
         - provider
         - platform
     """
+    print('started other')
+
     def format_other(keyword):
         """
         assumes keyword is a string of one or more words
@@ -215,4 +222,7 @@ def scrape_other(keyword):
 
 
         courses.append(course_info)
+    
+    print('finish other')
+    q.put(courses)
     return courses

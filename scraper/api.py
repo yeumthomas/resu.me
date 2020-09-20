@@ -2,28 +2,52 @@ import flask
 import course_scraping_functions as course_scraping_func
 import job_scraping_functions as job_scraping_func
 import json
+import multiprocessing
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
 
-@app.route('/api/v1/scrape-courses', methods=['POST'])
+@app.route('/api/v1/scrapeCourses', methods=['POST'])
 def scrape_courses():
     keyword = flask.request.form['keyword']
+    q = multiprocessing.Queue()
+    p1 = multiprocessing.Process(target=course_scraping_func.scrape_coursera, args=(keyword,q))
+    p2 = multiprocessing.Process(target=course_scraping_func.scrape_other, args=(keyword,q))
+    p1.start()
+    p2.start()
+
+    coursera = q.get()
+    other = q.get()
+
+    p1.join()
+    p2.join()
 
     return json.dumps({
-        'coursera': course_scraping_func.scrape_coursera(keyword),
-        'other': course_scraping_func.scrape_other(keyword)
+        'coursera': coursera,
+        'other': other
     })
 
-@app.route('/api/v1/scrape-jobs', methods=['POST'])
+@app.route('/api/v1/scrapeJobs', methods=['POST'])
 def scrape_jobs():
     keyword = flask.request.form['keyword']
     location = flask.request.form['location']
 
+    q = multiprocessing.Queue()
+    p1 = multiprocessing.Process(target=job_scraping_func.scrape_monster, args=(keyword, location, q))
+    p2 = multiprocessing.Process(target=job_scraping_func.scrape_simplyhired, args=(keyword, location, q))
+    p1.start()
+    p2.start()
+
+    monster = q.get()
+    simplyhired = q.get()
+
+    p1.join()
+    p2.join()
+
     return json.dumps({
-        'monster': job_scraping_func.scrape_monster(keyword, location),
-        'simplyhired': job_scraping_func.scrape_simplyhired(keyword, location)
+        'monster': monster,
+        'simplyhired': simplyhired
     })
 
 
