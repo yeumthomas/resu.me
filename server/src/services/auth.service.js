@@ -25,8 +25,10 @@ const signup = async (data) => {
   return user.save()
 }
 
-const me = (token) => {
-  const user = jwt.decode(token)
+const me = async (token) => {
+  const decoded = jwt.decode(token)
+
+  const user = await User.findOne({ email: decoded.email })
   return user
 }
 

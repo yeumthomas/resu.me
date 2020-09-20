@@ -7,8 +7,7 @@ const generateToken = async (email) => {
   const user = await User.findOne({ email: email })
   const token = jwt.sign({
     name: user.name,
-    email: user.email,
-    classes: user.classes
+    email: user.email
   }, config.auth.secret, {
     expiresIn: '1h'
   })
