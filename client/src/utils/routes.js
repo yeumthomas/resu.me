@@ -26,8 +26,8 @@ const routes = [
     component: Skills
   },
   {
-    path: '/coursesjobs',
-    name: 'coursesjobs',
+    path: '/results/:keyword/:location',
+    name: 'results',
     component: CoursesJobs
   }
 
