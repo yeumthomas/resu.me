@@ -20,6 +20,11 @@
 			<span class="label-text">State</span>
 			<span class="nav-dot"></span>
 		</label>
+		<input id="input-5" type="button" value="Press To Finish" />
+		<label for="input-5">
+			<span class="label-text">All Set!</span>
+			<span class="nav-dot"></span>
+		</label>
 		<p class="tip">Press Tab</p>
 	</form>
 
@@ -27,11 +32,19 @@
 
 
 <script>
-
 export default {
 	name: 'Onboarding',
-	components:{
-		
+	data() {
+		return {
+			skills: '',
+			interests: '',
+			city: '',
+			state: ''
+		}
+	},
+	methods: {
+		uploadInformation() {
+		}
 	}
 }
 </script>

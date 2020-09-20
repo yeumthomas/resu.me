@@ -6,6 +6,7 @@
     <input type="email" placeholder="Email" v-model="email" />
     <input type="password" placeholder="Password" v-model="password" />
     <button type="button" class="btn" v-on:click="sendSignupRequest">Sign Up</button>
+    <b-alert show variant="danger" class="mt-2" v-if="error">{{ error }}</b-alert>
   </form>
 </template>
 
@@ -17,7 +18,8 @@ export default {
     return {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   },
   methods: {
@@ -29,13 +31,16 @@ export default {
           data: {
             email: this.email,
             password: this.password,
-            name: this.name,
-            classes: []
+            name: this.name
           }
         }).then( (response) => {
           this.$cookies.set('token', response.data.token)
           this.$router.push('onboarding')
+        }).catch( () => {
+          this.error = 'Invalid email, password, or name field'
         })
+      } else {
+        this.error = 'Email, password, or name empty'
       }
     }
   }
@@ -72,7 +77,7 @@ h1, span, a {
 
 .btn {
   color: #2a2a2a;
-  background: #ffb101;
+  background: #fff241;
   border: 1px solid #f3f3f3;
   border-radius: 20px;
   padding: .75rem 2rem;

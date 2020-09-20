@@ -87,6 +87,27 @@ def scrape_coursera(keyword):
             skills.append(skill.text)
         courseInfo['skills'] = skills
 
+        # Course provider
+        provider = courseSoup.find('img', attrs = {'class': '_1g3eaodg'})
+        if provider != None:
+            courseInfo['provider'] = provider['alt']
+        else:
+            provider = courseSoup.find('div', attrs = {'class': lambda x: x and x.startswith('m-b-1s m-r-1')})
+            if provider != None:
+                courseInfo['provider'] = provider.text
+            else:
+                courseInfo['provider'] = provider
+
+        # Course info
+        info = courseSoup.find('div', attrs = {'class': ['m-t-1 m-b-3 description', 'm-t-1 description']})
+        if info != None:
+            courseInfo['info'] = info.text
+        else:
+            courseInfo['info'] = info
+
+        # Course platform (Coursera)
+        courseInfo['platform'] = 'Coursera'
+
     return courses
 
 
