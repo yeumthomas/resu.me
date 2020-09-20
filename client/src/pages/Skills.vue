@@ -1,23 +1,28 @@
 <template>
-	<div id="skills">
-		<div class="title my-5"> Pick a skill/interest to explore! </div>
-		<div class="container">
-			<div class="row">
-				<div class="col-4" v-for="(interest, index) in interests" :key="index">
-					<Skill :name="interest" :color="setColor(index)" />
+	<div>
+		<Navbar />
+		<div id="skills">
+			<div class="title my-5"> Pick a skill/interest to explore! </div>
+			<div class="container">
+				<div class="row">
+					<div class="col-4" v-for="(interest, index) in interests" :key="index">
+						<Skill :name="interest" :color="setColor(index)" />
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		</div>
 </template>
 
 <script>
 import axios from 'axios';
 
 import Skill from "../components/Skill"
+import Navbar from "../components/Navbar"
 export default {
 	components: {
-		Skill
+		Skill,
+		Navbar
 	},
 	data() {
 		return {
