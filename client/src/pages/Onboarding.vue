@@ -1,5 +1,5 @@
 <template>
-	<form>
+	<form class="mt-5">
 		<input id="input-1" v-model="skills" type="text" placeholder="Cooking, Negotiation, Woodwork" required autofocus />
 		<label for="input-1">
 			<span class="label-text">Current Skills (Separate with commas, up to six)</span>
@@ -27,7 +27,6 @@
 		</label>
 		<p class="tip">Press Tab</p>
 	</form>
-
 </template>
 
 <script>

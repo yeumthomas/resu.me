@@ -1,13 +1,18 @@
 <template>
-  <div class="mt-5" id="app">
-    <router-view />
+  <div>
+    <Navbar v-if="this.$route.path !== '/' && this.$route.path !== '/onboarding'" />
+    <div class="mt-5" id="app">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
+import Navbar from './components/Navbar'
 
 export default {
   name: 'App',
+  components: { Navbar }
 }
 </script>
 
