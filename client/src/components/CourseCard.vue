@@ -9,9 +9,9 @@
           <button ref="bookmark" class="bookmark" v-on:click="bookmarkCourse"><i class="far fa-bookmark"></i></button>
           <b-card-text class="card-body">
             <small class="text-muted">{{course.provider}} on {{course.platform}}</small>
-            <h4 class="font-weight-bold">{{course.name.trim()}}</h4>
+            <h4 class="font-weight-bold">{{course.name}}</h4>
             <div class="d-flex justify-content-start align-items-center">
-              <button class="btn mt-2 mr-2"><a :href="course.link">See Details</a></button>
+              <button class="btn mt-2 mr-2">See Details</button>
               <button class="btn mt-2 mr-2"><a :href="course.link">Go To {{course.platform}}</a></button>
               <span class="ml-2 mt-2 kufam" v-if="course.rating"> {{course.rating.split('s')[0]}}/5 stars </span>
             </div>
@@ -32,7 +32,7 @@ export default {
     bookmarkCourse() {
       axios({
         method: 'post',
-        url: 'http://localhost:3000/api/v1/user/courses',
+        url: 'http://localhost:3000/api/v1/users/courses',
         headers: {
           'Authorization': 'Bearer ' + this.$cookies.get('token')
         },
