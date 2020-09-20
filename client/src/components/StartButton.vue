@@ -1,6 +1,6 @@
 <template>
   <div class="mt-4">
-    <button v-on:click="toSignupLogin">Begin</button>
+    <button v-on:click="toSignupLogin">begin</button>
   </div>
 </template>
 
@@ -16,17 +16,19 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Kufam:wght@700&display=swap');
+
 button {
   position: relative;
   display: inline-block;
   border: none;
-  padding: 0.5rem 1.5rem;
+  padding: 1rem 2rem;
   border-radius: .5rem;
   margin: 0;
   text-decoration: none;
-  background: #ffb101;
+  background: #a2dce7;
   color: #2a2a2a;
-  font-family: Avenir;
+  font-family: 'Kufam', cursive;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
@@ -72,8 +74,9 @@ button::after {
 
 button:hover,
 button:focus {
-  background: var(--BTNcolor-dark, #2a2a2a);
-  color: var(--BTNcolor-text, #ffb101);
+  background: var(--BTNcolor-dark, #32afc7);
+  color: var(--BTNcolor-text, #000);
+  transition: .5s;
 }
 button:hover {
   transform: translateZ(10px);
