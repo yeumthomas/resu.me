@@ -32,7 +32,7 @@ const router = new VueRouter({
 
 router.beforeEach( (to, from, next) => {
   if(to.name !== 'landing' && !Vue.$cookies.get('token')) next({ name: 'landing' })
-  else if((to.name === 'landing' || to.name === 'onboarding') && Vue.$cookies.get('token')) next({ name: 'skills' })
+  else if(to.name === 'landing' && Vue.$cookies.get('token')) next({ name: 'skills' })
   else next()
 })
   
