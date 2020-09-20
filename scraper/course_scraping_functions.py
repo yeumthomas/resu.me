@@ -203,8 +203,8 @@ def scrape_other(keyword, q):
         course_info['link'] = final_link
 
         # get image
-        img = courseSoup.img['src'] #find('img', class_="block absolute top left width-100 height-100")
-        course_info['img'] = img
+        img = courseSoup.find('img', attrs={'class':'block absolute top left width-100 height-100'})
+        course_info['img'] = img['src']
 
         # get course description
         desc = courseSoup.find('div', class_="wysiwyg text-1 line-wide")

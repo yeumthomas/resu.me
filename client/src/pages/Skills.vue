@@ -8,16 +8,18 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		</div>
 </template>
 
 <script>
 import axios from 'axios';
 
 import Skill from "../components/Skill"
+import Navbar from "../components/Navbar"
 export default {
 	components: {
-		Skill
+		Skill,
+		Navbar
 	},
 	data() {
 		return {
