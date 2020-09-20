@@ -1,5 +1,5 @@
 <template>
-  <div :class="color">
+  <div :class="color" v-on:click="emitClick">
     {{ name.toLowerCase() }}
   </div>
 </template>
@@ -9,7 +9,10 @@
 export default {
   name: 'Skill',
   props: [ 'name', 'color' ],
-  created() {
+  methods: {
+    emitClick() {
+      this.$emit('clicked')
+    }
   }
 }
 </script>

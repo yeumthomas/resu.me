@@ -4,7 +4,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-4" v-for="(interest, index) in interests" :key="index">
-					<Skill :name="interest" :color="setColor(index)" />
+					<Skill :name="interest" :color="setColor(index)" @clicked="findCoursesJobs" />
 				</div>
 			</div>
 		</div>
@@ -44,6 +44,9 @@ export default {
 		},
 		setColor(number) {
 			return number % 2 == 0 ? 'ybox' : 'bbox'
+		},
+		findCoursesJobs() {
+			this.$router.push({ name: 'results', params: { keyword: 'python', location: 'houston, texas' } })
 		}
 	}
 }
