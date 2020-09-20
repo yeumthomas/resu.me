@@ -1,26 +1,26 @@
 <template>
 	<form>
-		<input id="input-1" type="text" placeholder="Cooking, Negotiation, Woodwork" required autofocus />
+		<input id="input-1" v-model="skills" type="text" placeholder="Cooking, Negotiation, Woodwork" required autofocus />
 		<label for="input-1">
-			<span class="label-text">Current Skills (Separate with commas)</span>
+			<span class="label-text">Current Skills (Separate with commas, up to six)</span>
 			<span class="nav-dot"></span>
 		</label>
-		<input id="input-2" type="text" placeholder="Programming, Investing, Photographer" required />
+		<input id="input-2" v-model="interests" type="text" placeholder="Programming, Investing, Photographer" required />
 		<label for="input-2">
-			<span class="label-text">Interests and Aspirations (Separate with commas)</span>
+			<span class="label-text">Interests and Aspirations (Separate with commas, up to six)</span>
 			<span class="nav-dot"></span>
 		</label>
-		<input id="input-3" type="text" placeholder="Houston" required />
+		<input id="input-3" v-model="city" type="text" placeholder="Houston" required />
 		<label for="input-3">
 			<span class="label-text">City</span>
 			<span class="nav-dot"></span>
 		</label>
-		<input id="input-4" type="text" placeholder="Texas" required />
+		<input id="input-4" v-model="state" type="text" placeholder="Texas" required />
 		<label for="input-4">
 			<span class="label-text">State</span>
 			<span class="nav-dot"></span>
 		</label>
-		<input id="input-5" type="button" value="Press To Finish" />
+		<input id="input-5" type="button" value="Press To Finish" v-on:click="uploadInformation" />
 		<label for="input-5">
 			<span class="label-text">All Set!</span>
 			<span class="nav-dot"></span>
@@ -30,8 +30,9 @@
 
 </template>
 
-
 <script>
+import axios from 'axios';
+
 export default {
 	name: 'Onboarding',
 	data() {
@@ -44,6 +45,24 @@ export default {
 	},
 	methods: {
 		uploadInformation() {
+			if(this.skills.length > 0 && this.interests.length > 0 && this.city.length > 0 && this.state.length > 0) {
+				let skillsArr = this.skills.split(',')
+				let interestsArr = this.interests.split(',')
+				axios({
+					method: 'post',
+					url: 'http://localhost:3000/api/v1/users/onboard',
+					headers: {
+						'Authorization': 'Bearer ' + this.$cookies.get('token')
+					},
+					data: {
+						skills: skillsArr,
+						interests: interestsArr,
+						location: this.city + ', ' + this.state
+					}
+				}).then( () => {
+					this.$router.push('skills')
+				})
+			}
 		}
 	}
 }
