@@ -4,6 +4,7 @@
       <b-col md="12">
         <b-card-body>
           <button ref="bookmark" class="bookmark" v-if="bookmark" v-on:click="bookmarkJob"><i class="far fa-bookmark"></i></button>
+          <button class="bookmark" v-if="remove" v-on:click="removeJob">&times;</button>
           <b-card-text class="card-body">
             <small class="text-muted">{{job.location.trim()}}</small>
             <h3 class="font-weight-bold">{{job.name.trim()}}</h3>
@@ -23,7 +24,7 @@ import axios from 'axios'
 
 export default {
   name: 'JobCard',
-  props: [ 'job', 'bookmark' ],
+  props: [ 'job', 'bookmark', 'remove' ],
   methods: {
     bookmarkJob() {
       axios({
@@ -37,6 +38,9 @@ export default {
         console.log(response.data)
         this.$refs['bookmark'].style.backgroundColor = '#a2dce7'
       })
+    },
+    removeJob() {
+      this.$emit('destroy')
     }
   }
 }

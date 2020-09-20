@@ -42,7 +42,7 @@
         <h4> Classes </h4>
         <div class="row">
           <div class="col-12 my-3" v-for="(course, index) in user.classes" :key="index">
-            <CourseCard :course="course" :bookmark="false" />
+            <CourseCard :course="course" :bookmark="false" :remove="true" @destroy="removeCourse(course)" />
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@
         <h4> Jobs </h4>
         <div class="row">
           <div class="col-12 my-3" v-for="(job, index) in user.jobs" :key="index">
-            <JobCard :job="job" :bookmark="false" />
+            <JobCard :job="job" :bookmark="false" :remove="true" @destroy="removeJob(job)" />
           </div>
         </div>
       </div>
@@ -89,7 +89,32 @@ export default {
     },
     setColor(number) {
 			return number % 2 == 0 ? 'ybox' : 'bbox'
-		},
+    },
+    removeCourse(course) {
+      axios({
+        method: 'delete',
+        url: 'http://localhost:3000/api/v1/users/courses',
+        headers: {
+          'Authorization': 'Bearer ' + this.$cookies.get('token')
+        },
+        data: course
+      }).then( () => {
+        console.log('axios done')
+        this.getUserInformation()
+      })
+    },
+    removeJob(job) {
+      axios({
+        method: 'delete',
+        url: 'http://localhost:3000/api/v1/users/jobs',
+        headers: {
+          'Authorization': 'Bearer ' + this.$cookies.get('token')
+        },
+        data: job
+      }).then( () => {
+        this.getUserInformation()
+      })
+    }
   }
 }
 </script>

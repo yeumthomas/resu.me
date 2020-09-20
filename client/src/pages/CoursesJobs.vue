@@ -6,7 +6,7 @@
 					<b-spinner class="spinner" variant="primary" label="Loading Courses..." v-if="coursesLoading"></b-spinner>
 					<div class="row" v-if="!coursesLoading">
 						<div class="col-12 my-3" v-for="(course, index) in courses" :key="index">
-							<CourseCard :course="course" />
+							<CourseCard :course="course" :bookmark="true" :remove="false" />
 						</div>
 					</div>
 				</div>
@@ -16,7 +16,7 @@
 					<b-spinner class="spinner" variant="primary" label="Loading Jobs..." v-if="jobsLoading"></b-spinner>
 					<div class="row" v-if="!jobsLoading">
 						<div class="col-12 my-3" v-for="(job, index) in jobs" :key="index">
-							<JobCard :job="job" />
+							<JobCard :job="job" :bookmark="true" :remove="false" />
 						</div>
 					</div>
 				</div>

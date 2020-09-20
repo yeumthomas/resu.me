@@ -25,8 +25,18 @@ const addFavoriteJob = async (email, job) => {
   return user.save()
 }
 
+const removeCourse = async (email, course) => {
+  return User.findOneAndUpdate({ email: email }, { $pull: { classes: { name: course.name } } })
+}
+
+const removeJob = async (email, job) => {
+  return User.findOneAndUpdate({ email: email }, { $pull: { jobs: { name: job.name } } })
+}
+
 module.exports = {
   addOnboardInfo: addOnboardInfo,
   addFavoriteCourse: addFavoriteCourse,
-  addFavoriteJob: addFavoriteJob
+  addFavoriteJob: addFavoriteJob,
+  removeCourse: removeCourse,
+  removeJob: removeJob
 }
