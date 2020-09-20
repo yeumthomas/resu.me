@@ -12,7 +12,7 @@
             <small class="text-muted">{{course.provider}} on {{course.platform}}</small>
             <h4 class="font-weight-bold">{{course.name}}</h4>
             <div class="d-flex justify-content-start align-items-center">
-              <button class="btn mt-2 mr-2">See Details</button>
+              <b-button class="btn mt-2 mr-2" v-b-modal="course.name">See Details</b-button>
               <button class="btn mt-2 mr-2"><a :href="course.link">Go To {{course.platform}}</a></button>
               <span class="ml-2 mt-2 kufam" v-if="course.rating"> {{course.rating.split('s')[0]}}/5 stars </span>
             </div>
@@ -20,6 +20,11 @@
         </b-card-body>
       </b-col>
     </b-row>
+
+    <b-modal :id="course.name" :title="course.name">
+      <p>{{course.desc}}</p>
+      <span class="font-weight-bold"> Taught in {{course.lang}} </span>
+    </b-modal>
   </b-card>
 </template>
 

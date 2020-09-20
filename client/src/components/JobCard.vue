@@ -10,7 +10,7 @@
             <h3 class="font-weight-bold">{{job.name.trim()}}</h3>
             <h4>{{job.company.trim()}}</h4>
             <div class="d-flex justify-content-start align-items-center">
-              <button class="btn mt-2 mr-2"><a :href="job.link">See Details</a></button>
+              <button class="btn mt-2 mr-2"><a :href="job.link">View Posting</a></button>
             </div>
           </b-card-text>
         </b-card-body>
