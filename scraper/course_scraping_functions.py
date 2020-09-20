@@ -110,10 +110,10 @@ def scrape_udemy(keyword):
     # example
     # NO WORK url = "https://www.udemy.com/courses/search/?price=price-free&q=cooking&sort=relevance"
     # NO WORK url = "https://www.codecademy.com/search?query=html"
-    # WORKS url = "https://www.classcentral.com/search?q=python"
+    url = "https://www.classcentral.com/search?q=python"
     # ? MAYBE url = https://www.udemy.com/courses/search/?price=price-free&q=" + formatted_keyword + "&sort=relevance"
     # WORKS url = 'https://www.monster.com/jobs/search/?q=cook&where=Katy__2C-TX&intcid=skr_navigation_nhpso_searchMain'
-    url = 'https://www.simplyhired.com/search?q=cook&l=Houston%2C+TX&job=GVLzF1t5rkWSStUfDTAQJNP_O4M1qSA0W_NL9ZX8Z8lwhw2pg33n4w'
+    # url = 'https://www.simplyhired.com/search?q=cook&l=Houston%2C+TX&job=GVLzF1t5rkWSStUfDTAQJNP_O4M1qSA0W_NL9ZX8Z8lwhw2pg33n4w'
     with urllib.request.urlopen(url) as response:
         page = response.read()
     soup = BeautifulSoup(page, 'html.parser')

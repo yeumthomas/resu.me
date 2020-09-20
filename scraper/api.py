@@ -1,6 +1,7 @@
 import flask
-import web_scraping_functions as scraping_func
+import course_scraping_functions as course_scraping_func
 import json
+import classcentral
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -12,11 +13,11 @@ def scrape():
 
     keyword = flask.request.form['keyword']
 
-    return json.dumps({'other': scraping_func.scrape_udemy(keyword)})
+    return json.dumps({'other': classcentral.scrape_other(keyword)})
 
 
     # # scrape coursera (returns as list of dicts)
-    # coursera = scraping_func.scrape_coursera(keyword)
+    # coursera = course_scraping_func.scrape_coursera(keyword)
     #
     # response = {}
     #
