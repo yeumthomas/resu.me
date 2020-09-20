@@ -15,11 +15,10 @@
 import axios from 'axios';
 
 import Skill from "../components/Skill"
-import Navbar from "../components/Navbar"
+
 export default {
 	components: {
-		Skill,
-		Navbar
+		Skill
 	},
 	data() {
 		return {
