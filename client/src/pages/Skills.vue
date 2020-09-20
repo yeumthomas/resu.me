@@ -1,15 +1,17 @@
 <template>
 	<div id="skills">
-		<Navbar />
 		<h1 class = Title>Skills</h1>
+		<Skill />
 	</div>
 </template>
 
 <script>
-import Navbar from "../components/Navbar"
+
+import Skill from "../components/Skill"
 export default {
+	name: 'skills',
 	components: {
-		Navbar
+		Skill
 	}
 }
 </script>
