@@ -47,7 +47,9 @@ h1 {
 }
 
 #navbar {
-  background: #fafafa;
+  background: #ffffff;
+  font-family: Avenir;
+  color: #2a2a2a;
 }
 
 b-navbar{
@@ -61,5 +63,17 @@ b-navbar{
 .nav-link {
   text-decoration: none;
   color: #000;
+}
+
+.btn {
+  background: #a2dce7;
+  border-color: #a2dce7;
+  color: #2a2a2a;
+}
+
+.btn:hover {
+  background: #32afc7;
+  color: #2a2a2a;
+  border-color: #32afc7;
 }
 </style>

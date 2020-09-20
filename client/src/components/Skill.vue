@@ -21,7 +21,7 @@ export default {
 .ybox,
 .bbox {
   height: 5rem;
-  padding: 1rem 4rem;
+  padding: 1rem 8rem;
   margin: 1rem 2rem;
   transition: 1s;
   color: #2a2a2a;
