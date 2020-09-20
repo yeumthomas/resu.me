@@ -2,7 +2,7 @@
   <div>
     <h1>New Here?</h1>
     <p>Create an account</p>
-    <button id="si" v-on:click="emitClick">Sign Up</button>
+    <button id="si" v-on:click="emitClick">sign up</button>
   </div>
 </template>
 
@@ -28,11 +28,10 @@ button{
     border-radius: 20px;
     border: 1px solid #fff241;
     color: #2a2a2a;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: bold;
     padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    letter-spacing: .05rem;
     transition: transform 80ms ease-in;
 }
 
