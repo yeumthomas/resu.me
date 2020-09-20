@@ -3,7 +3,7 @@
     <b-row no-gutters>
       <b-col md="12">
         <b-card-body>
-          <button ref="bookmark" class="bookmark" v-on:click="bookmarkJob"><i class="far fa-bookmark"></i></button>
+          <button ref="bookmark" class="bookmark" v-if="bookmark" v-on:click="bookmarkJob"><i class="far fa-bookmark"></i></button>
           <b-card-text class="card-body">
             <small class="text-muted">{{job.location.trim()}}</small>
             <h3 class="font-weight-bold">{{job.name.trim()}}</h3>
@@ -23,7 +23,7 @@ import axios from 'axios'
 
 export default {
   name: 'JobCard',
-  props: [ 'job' ],
+  props: [ 'job', 'bookmark' ],
   methods: {
     bookmarkJob() {
       axios({

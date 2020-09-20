@@ -6,7 +6,7 @@
       </b-col>
       <b-col md="10">
         <b-card-body>
-          <button ref="bookmark" class="bookmark" v-on:click="bookmarkCourse"><i class="far fa-bookmark"></i></button>
+          <button ref="bookmark" class="bookmark" v-if="bookmark" v-on:click="bookmarkCourse"><i class="far fa-bookmark"></i></button>
           <b-card-text class="card-body">
             <small class="text-muted">{{course.provider}} on {{course.platform}}</small>
             <h4 class="font-weight-bold">{{course.name}}</h4>
@@ -27,7 +27,7 @@ import axios from 'axios'
 
 export default {
   name: 'CourseCard',
-  props: [ 'course' ],
+  props: [ 'course', 'bookmark' ],
   methods: {
     bookmarkCourse() {
       axios({

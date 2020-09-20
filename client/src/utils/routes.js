@@ -5,6 +5,7 @@ import Landing from '../pages/Landing.vue';
 import Onboarding from '../pages/Onboarding.vue';
 import Skills from '../pages/Skills.vue';
 import CoursesJobs from '../pages/CoursesJobs.vue';
+import Profile from '../pages/Profile.vue';
 
 
 Vue.use(VueRouter)
@@ -29,8 +30,12 @@ const routes = [
     path: '/results/:keyword/:location',
     name: 'results',
     component: CoursesJobs
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile
   }
-
 ];
 
 const router = new VueRouter({
