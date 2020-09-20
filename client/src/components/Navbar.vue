@@ -4,7 +4,7 @@
       <aside margin-top="0px">
         <el-row>
           <el-col :span="10">
-            <img src="../assets/logo 2.png" alt="logo" class="logo">
+            <img src="../assets/img/logo-paper.png" alt="logo" class="logo">
           </el-col>
           <el-col :span="10">
           </el-col>

@@ -1,18 +1,18 @@
 <template>
   <div class="container" id="container">
     <div class="form-container sign-up-container">
-      <Login />
+      <Signup />
     </div>
     <div class="form-container sign-in-container">
-      <Signup />
+      <Login />
     </div>
     <div class="overlay-container">
       <div class="overlay">
         <div class="overlay-panel overlay-left">
-          <SignupContain @shifted="movePanelLeft" />
+          <LoginContain @shifted="movePanelLeft" />
         </div>
         <div class="overlay-panel overlay-right">
-          <LoginContain @shifted="movePanelRight" />
+          <SignupContain @shifted="movePanelRight" />
         </div>
       </div>
     </div>
