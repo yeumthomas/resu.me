@@ -2,7 +2,6 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 
-
 def scrape_coursera(keyword):
     """
     returns a list of objects where each is a course with the following keys:
