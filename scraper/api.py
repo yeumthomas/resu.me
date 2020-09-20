@@ -1,14 +1,18 @@
 import flask
+from flask_cors import CORS, cross_origin
 import course_scraping_functions as course_scraping_func
 import job_scraping_functions as job_scraping_func
 import json
 import multiprocessing
 
 app = flask.Flask(__name__)
+cors = CORS(app)
+app.config["CORS_HEADERS"] = "Content-Type"
 app.config["DEBUG"] = True
 
 
 @app.route('/api/v1/scrapeCourses', methods=['POST'])
+@cross_origin()
 def scrape_courses():
     keyword = flask.request.form['keyword']
     q = multiprocessing.Queue()
@@ -29,6 +33,7 @@ def scrape_courses():
     })
 
 @app.route('/api/v1/scrapeJobs', methods=['POST'])
+@cross_origin()
 def scrape_jobs():
     keyword = flask.request.form['keyword']
     location = flask.request.form['location']
