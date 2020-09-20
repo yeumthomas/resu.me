@@ -4,7 +4,17 @@ from bs4 import BeautifulSoup
 
 
 def scrape_coursera(keyword):
-
+    """
+    returns a list of objects where each is a course with the following keys:
+        - name
+        - img
+        - link
+        - desc
+        - rating
+        - lang
+        - provider
+        - platform
+    """
     def format_coursera(keyword):
         """
         assumes keyword is a string of one or more words
@@ -20,7 +30,6 @@ def scrape_coursera(keyword):
             return url
 
     updated_keyword = format_coursera(keyword)
-
     url = "https://www.coursera.org/search" + updated_keyword
 
     with urllib.request.urlopen(url) as response:
@@ -71,35 +80,35 @@ def scrape_coursera(keyword):
             else:
                 allFields.append(" ")
 
-        for field in allFields:
-            if field != 0:
-                if 'Level' in field:
-                    courseInfo['level'] = field
-                elif '%' in field:
-                    courseInfo['onlinePercentage'] = field
+        # for field in allFields:
+        #     if field != 0:
+        #         if 'Level' in field:
+        #             courseInfo['level'] = field
+        #         elif '%' in field:
+        #             courseInfo['onlinePercentage'] = field
         
         # Course primary language
         courseInfo['lang'] = allFields[len(allFields) - 1]
 
         # Course skills
-        skills = []
-        for skill in courseSoup.findAll('span', attrs = {'class': '_1q9sh65'}):
-            skills.append(skill.text)
-        courseInfo['skills'] = skills
+        # skills = []
+        # for skill in courseSoup.findAll('span', attrs = {'class': '_1q9sh65'}):
+        #     skills.append(skill.text)
+        # courseInfo['skills'] = skills
 
         # Course provider
         provider = courseSoup.find('img', attrs = {'class': '_1g3eaodg'})
         if provider != None:
             courseInfo['provider'] = provider['alt']
         else:
-            provider = courseSoup.find('div', attrs = {'class': lambda x: x and x.startswith('m-b-1s m-r-1')})
+            provider = courseSoup.find('div', attrs={'class': lambda x: x and x.startswith('m-b-1s m-r-1')})
             if provider != None:
                 courseInfo['provider'] = provider.text
             else:
                 courseInfo['provider'] = provider
 
         # Course info
-        info = courseSoup.find('div', attrs = {'class': ['m-t-1 m-b-3 description', 'm-t-1 description']})
+        info = courseSoup.find('div', attrs={'class': ['m-t-1 m-b-3 description', 'm-t-1 description']})
         if info != None:
             courseInfo['info'] = info.text
         else:
@@ -113,21 +122,19 @@ def scrape_coursera(keyword):
 
 def scrape_other(keyword):
     """
-    courses
-        - name DONE
-        - image DONE
-        - hyperlink to platform
-        - description
-        - rating <-- sorted by DONE
-        - language
-        - institution/sponsor DONE
-        - platform name
-    :param keyword:
-    :return:
+    returns a list of objects where each is a course with the following keys:
+        - name
+        - img
+        - link
+        - desc
+        - rating
+        - lang
+        - provider
+        - platform
     """
     def format_other(keyword):
         """
-            assumes keyword is a string of one or more words
+        assumes keyword is a string of one or more words
         """
         if ' ' in keyword is False:
             return keyword
@@ -139,10 +146,15 @@ def scrape_other(keyword):
             url = url[:-1]
             return url
 
+    def remove_extra(str):
+        """
+        removes unnecessary newlines in string
+        """
+        return str.replace("\n", "").replace(" \n", "").replace("\n ", "")
+
     updated_keyword = format_other(keyword)
 
-    # url = "https://www.classcentral.com/search?q=" + updated_keyword
-    url = "https://www.classcentral.com/search?q=python"
+    url = "https://www.classcentral.com/search?q=" + updated_keyword
 
     with urllib.request.urlopen(url) as response:
         page = response.read()
@@ -158,17 +170,21 @@ def scrape_other(keyword):
 
         course_info = {}
 
-        # get sponsor
-        sponsor = tr.a.text
-        course_info['sponsor'] = sponsor
+        # get provider
+        provider = tr.a.text
+        course_info['provider'] = remove_extra(provider)
 
         # get name
         name = tr.span.text
-        course_info['name'] = name
+        course_info['name'] = remove_extra(name)
 
         # get rating
         rating = tr.find('td', class_='hide-on-hover fill-space relative')['data-timestamp']
         course_info['rating'] = ("{:.1f}".format(float(rating)))
+
+        # get platform
+        platform = tr.find('a', class_='color-charcoal italic').text
+        course_info['platform'] = remove_extra(platform)
 
         # link to platform class
         class_link = "https://www.classcentral.com" + tr.find('a', class_='color-charcoal block line-tight course-name')['href']
@@ -177,16 +193,26 @@ def scrape_other(keyword):
             coursePage = response.read()
         courseSoup = BeautifulSoup(coursePage, 'html.parser')
 
-
+        final_link = courseSoup.find("a", class_="margin-bottom-small btn-blue btn-medium width-100")['href']
+        course_info['link'] = final_link
 
         # get image
         img = courseSoup.img['src'] #find('img', class_="block absolute top left width-100 height-100")
         course_info['img'] = img
 
         # get course description
+        desc = courseSoup.find('div', class_="wysiwyg text-1 line-wide")
+        if desc is None:
+            desc = courseSoup.find('div', class_="truncatable-area is-truncated wysiwyg text-1 line-wide").text
+        else:
+            desc = desc.text
+        course_info['desc'] = remove_extra(desc)
 
-
-
+        # get language
+        for anchor in courseSoup.aside.findAll('a', class_="text-2 color-charcoal margin-left-small line-tight"):
+            if "English" in anchor.text or "Spanish" in anchor.text or "Italian" in anchor.text or "French" in \
+                    anchor.text or "Mandarin" in anchor.text or "Korean" in anchor.text:
+                course_info['lang'] = remove_extra(anchor.text)
 
 
         courses.append(course_info)
