@@ -22,7 +22,8 @@ export default {
 	},
 	data() {
 		return {
-			interests: []
+			interests: [],
+			location: ''
 		}
 	},
 	created() {
@@ -38,6 +39,7 @@ export default {
 				}
 			}).then( (response) => {
 				this.interests = response.data.interests
+				this.location = response.data.location
 				console.log(this.interests)
 			}).catch( (err) => {
 				console.log(err)
@@ -46,8 +48,8 @@ export default {
 		setColor(number) {
 			return number % 2 == 0 ? 'ybox' : 'bbox'
 		},
-		findCoursesJobs() {
-			this.$router.push({ name: 'results', params: { keyword: 'python', location: 'houston, texas' } })
+		findCoursesJobs(keyword) {
+			this.$router.push({ name: 'results', params: { keyword: keyword, location: this.location } })
 		}
 	}
 }

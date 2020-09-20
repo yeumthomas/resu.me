@@ -11,7 +11,7 @@ export default {
   props: [ 'name', 'color' ],
   methods: {
     emitClick() {
-      this.$emit('clicked')
+      this.$emit('clicked', this.name)
     }
   }
 }

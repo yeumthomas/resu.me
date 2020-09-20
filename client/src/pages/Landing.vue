@@ -2,6 +2,7 @@
   <div class="container-fluid d-flex justify-content-center align-items-center">
     <div class="justify-content-center">
       <h1>resu.<span style="color: #32afc7">me</span></h1>
+      <h4> Empowering our essential workers, one course at a time </h4>
       <img src="../assets/img/logo-bee.png" class="img-fluid my-1" alt="image">
       <StartButton @clicked="displayOverlay" />
     </div>
