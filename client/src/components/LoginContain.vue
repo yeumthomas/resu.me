@@ -2,7 +2,7 @@
   <div>
     <h1>Been Here Before?</h1>
     <p>Enter your login information</p>
-    <button id="su" v-on:click="emitClick">Sign In</button>
+    <button id="su" v-on:click="emitClick">sign in</button>
   </div>
 </template>
 
@@ -25,13 +25,12 @@ h1 {
 }
 button{
     border-radius: 20px;
-    border: 1px solid #ffb101;
+    border: 1px solid #fff241;
     color: #fff;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: bold;
     padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    letter-spacing: .05rem;
     transition: transform 80ms ease-in;
 }
 

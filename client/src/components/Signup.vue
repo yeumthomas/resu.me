@@ -77,18 +77,18 @@ h1, span, a {
 
 .btn {
   color: #2a2a2a;
-  background: #fff241;
+  background: #a2dce7;
   border: 1px solid #f3f3f3;
   border-radius: 20px;
   padding: .75rem 2rem;
-  text-transform: uppercase;
-  letter-spacing: .1rem;
-  font-size: .8rem;
+  text-transform: lowercase;
+  letter-spacing: .05rem;
+  font-size: 20px;
   font-weight: bold;
 }
 
 .btn:hover {
-  background: #2a2a2a;
-  color: #ffb101;
+  background: #32afc7;
+  color: #2a2a2a;
 }
 </style>

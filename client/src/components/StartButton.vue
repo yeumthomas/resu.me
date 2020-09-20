@@ -23,12 +23,12 @@ button {
   display: inline-block;
   border: none;
   padding: 1rem 2rem;
-  border-radius: .5rem;
+  border-radius: 20px;
   margin: 0;
   text-decoration: none;
   background: #a2dce7;
   color: #2a2a2a;
-  font-family: 'Kufam', cursive;
+  letter-spacing: .05rem;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
@@ -50,7 +50,7 @@ button::after{
   bottom: 0;
   z-index: -1;
   color: var(--BTNcolor-default, #666);
-  border-radius: var(--BTNradius, .5rem);
+  border-radius: var(--BTNradius, 20px);
   box-shadow: 0 0 0 0px;
   will-change: opacity;
   opacity: 0;
